@@ -33,7 +33,10 @@ Two different “browsers”:
 | Web client page | HTML | [../../src/renderer/web-index.html](../../src/renderer/web-index.html#L1) | title `Orca Web` | 2026-09-12 |
 | Web client boot | React | [../../src/renderer/src/web/main.tsx](../../src/renderer/src/web/main.tsx#L1) | pairing hash → stored runtime | 2026-09-12 |
 | Dev web prepare | Node script | [../../config/scripts/run-electron-vite-dev.mjs](../../config/scripts/run-electron-vite-dev.mjs#L534) | 缺 bundle 时跳过；`build:web` 或 `ORCA_DEV_WEB_PREPARE=1` | 2026-09-12 |
-| Local setup | contributor guide | [../../.github/CONTRIBUTING.md](../../.github/CONTRIBUTING.md#L17) | `pnpm install` + `pnpm dev` | 2026-09-12 |
+| Local setup | contributor guide | [../../.github/CONTRIBUTING.md](../../.github/CONTRIBUTING.md#L17) | `pnpm install` + `pnpm dev`；2026-09-12 已在本机跑通 | 2026-09-12 |
+| Official vs local pack | knowledge | [cloud-and-local-pack.md](cloud-and-local-pack.md#L1) | 同一客户端；可选 `*.onorca.dev`；遥测仅官方 CI | 2026-09-12 |
+| Cloud auth defaults | packaged main | [../../src/main/orca-profiles/profile-cloud-auth-config.ts](../../src/main/orca-profiles/profile-cloud-auth-config.ts#L24) | packaged 才默认 `login.onorca.dev` / `relay.onorca.dev` | 2026-09-12 |
+| Telemetry gate | compile-time | [../../electron.vite.config.ts](../../electron.vite.config.ts#L31) · [../../src/main/telemetry/client.ts](../../src/main/telemetry/client.ts#L163) | contributor / 本地包 `IS_OFFICIAL_BUILD=false` | 2026-09-12 |
 | Install path | product docs | [../../docs/site/content/docs/install.mdx](../../docs/site/content/docs/install.mdx#L1) | 官方 dmg/exe/AppImage / Homebrew | 2026-09-12 |
 | Ways to run | product docs | [../../docs/site/content/docs/ways-to-run.mdx](../../docs/site/content/docs/ways-to-run.mdx#L1) | local / SSH / remote server / Cloud VM | 2026-09-12 |
 | Remote server | product docs | [../../docs/site/content/docs/remote-servers.mdx](../../docs/site/content/docs/remote-servers.mdx#L1) | 桌面分享或 `orca serve` | 2026-09-12 |
@@ -50,4 +53,5 @@ Two different “browsers”:
 
 ## Unproven
 
-- `pnpm install` / `pnpm dev` / `pnpm build:web` / `pnpm build:mac`、官方 dmg 安装、真实浏览器配对均未在 2026-09-12 规则初始化任务中执行。
+- `pnpm run build:web`、局域网 Web 配对、`pnpm build:mac`、官方 dmg、Relay 内容是否落盘：未跑。
+- `pnpm install` + 可见 `pnpm dev` 已于 2026-09-12 在本机执行；见 [cloud-and-local-pack.md](cloud-and-local-pack.md#L1)。

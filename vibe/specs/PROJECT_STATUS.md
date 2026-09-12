@@ -15,22 +15,23 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 ## Current Focus
 
-- Status: fork cloned to `GitFork/orca`; local working branch is `czz-dev` from `origin/main` `3b13ce09a51e` (app `1.4.197`). CodeNote AI rule chain initialized. No application code changed.
-- Latest task docs: [task card](260912/1236-ai-rules-init/task-card.md), [changes](260912/1236-ai-rules-init/changes.md).
-- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`. `czz-dev` is local-only; not pushed.
-- CodeNote catalog: `project-index.json` + this-host `workspace.local.json` binding.
+- Status: `czz-dev` 已落地规则链，并完成本机可见 `pnpm dev`。官方包与第一方云边界已写入知识笔记。无应用代码改动。
+- Latest task docs: [1744 task card](260912/1744-local-dev-cloud-boundary/task-card.md), [changes](260912/1744-local-dev-cloud-boundary/changes.md)；权威事实 [cloud-and-local-pack.md](../knowledge/cloud-and-local-pack.md).
+- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`. `czz-dev` 仍无 upstream。
+- CodeNote catalog: 已登记 `orca`；本轮不改 CodeNote。
 
 ## Active Task Index
 
 | Task | Status | Authoritative Doc | Verification | Notes |
 | --- | --- | --- | --- | --- |
 | AI rules init | `implemented-local / catalog-registered / gitfork-local-committed / unpushed` | [task-card](260912/1236-ai-rules-init/task-card.md) | project audit 仅余官方短入口 inherited | no app code |
+| Local preview + cloud boundary | `implemented-local / gitfork-local-committed / unpushed` | [task-card](260912/1744-local-dev-cloud-boundary/task-card.md) | `pnpm install`/`pnpm dev` 已观察；code-link OK | 未打包 |
 
 ## Verification State
 
-- Last verified: 2026-09-12 (docs/rules)
-- Commands: CodeNote `audit_ai_rules.py --mode project`；authored-file code-link audit OK；resolver `--project orca`
-- Unverified gaps: `pnpm install` / `pnpm dev` / `build:web` / `build:mac`、官方安装包、真实浏览器配对
+- Last verified: 2026-09-12 (`pnpm install` + visible `pnpm dev`)
+- Commands: project audit 仅 inherited 短入口；code-link OK
+- Unverified gaps: `build:web` / 局域网 Web 配对 / `build:mac` / 官方 dmg / Relay 内容落盘
 - Latest Sidecar result: main-thread
 - Latest Prior Task Overlap: reference-only GitFork/react-doctor adapter shape; decision `new-task`
 - Latest Documentation Impact: `project-current`
@@ -38,9 +39,9 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 ## Open Risk Or Deploy Gates
 
-- Gate: 官方 Release 签名包 / 本机 `build:mac` / 可见 Electron 窗口 / 对真实网络 `orca serve`
-- Blocking condition: this task does not authorize live install, pack, or pairing
-- Rollback note: `czz-dev` 仅含上游 `3b13ce09a51e` 加本仓 AI 规则初始化；未推送
+- Gate: `build:web` / 本机 `build:mac` / 官方签名包 / 对真实网络 `orca serve` / 登录 Relay
+- Blocking condition: 局域网预览已授权；打包与跨网仍未授权
+- Rollback note: `czz-dev` 相对 `origin/main` `3b13ce09a51e` 仅 vibe/适配器；未推送
 
 ## Governance Baseline
 
@@ -55,7 +56,7 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 | Item | Source turn / task | Owner | Next gate | Status |
 | --- | --- | --- | --- | --- |
-| 启用外部浏览器工作台 | 本轮说明 | 用户选择官方包或源码 `build:web`/`dev` | 未授权安装/打包 | documented-unrun |
+| 局域网 Web 工作台 | 1744 | 用户若仍要浏览器配对 | `pnpm run build:web` | documented-unrun |
 
 ## Memory Routing
 
@@ -64,7 +65,7 @@ Compact process hub for active AI work. This file routes current tasks to projec
 - Prior Task Overlap: GitFork/react-doctor
 - Evolution Candidate: none
 - Project rules: created this round
-- Knowledge: architecture map created this round
+- Knowledge: architecture map + [cloud-and-local-pack.md](../knowledge/cloud-and-local-pack.md)
 - ADR: empty index only
 - Error memory: empty index
 - DB memory: not configured

@@ -19,7 +19,11 @@ pnpm run build:unpack        # 未打包目录，便于检查产物
 
 开发本仓时不要用已安装的生产 `orca` 代替 `pnpm exec orca-dev`。`pnpm dev` 若缺少 `out/web/web-index.html`，会跳过配对 Web 构建；需要浏览器配对时先 `pnpm run build:web` 或设 `ORCA_DEV_WEB_PREPARE=1`。
 
-源码路径要求 pnpm `12`（见根 `package.json` `packageManager`）和 Electron 运行时（`pnpm run ensure:electron-runtime`）。
+源码路径要求 pnpm `12`（见根 `package.json` `packageManager`，用 `corepack prepare pnpm@12.0.0 --activate`）和 Electron 运行时（`pnpm run ensure:electron-runtime`）。从 Electron 宿主终端启动时先 `unset ELECTRON_RUN_AS_NODE`。
+
+用户明确要看窗口时不要设 `ORCA_BACKGROUND_LAUNCH=1`。Agent 自己验 UI 时仍必须设，避免抢焦点。开发态用户数据在 `~/Library/Application Support/orca-dev`，不要当成正式安装包的配置。
+
+2026-09-12 已在本机跑通 `pnpm install` 与可见 `pnpm dev`（Dock `Orca: czz-dev`）。未编 Web 客户端、未打包。云边界见 [../knowledge/cloud-and-local-pack.md](../knowledge/cloud-and-local-pack.md)。
 
 ## Verification
 

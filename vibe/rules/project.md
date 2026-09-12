@@ -49,8 +49,9 @@ Directories that do **not** exist and must not be invented: `vibe/ai-db/`, `vibe
 - Telemetry（PostHog 等）与账号 cookie；不要把 DSN、session cookie、artifact 公链写进仓库
 - 代码签名、公证、`ORCA_MAC_RELEASE`、Windows SignPath、自动更新
 - Native 模块（`node-pty`、computer-use helpers）与 Linux glibc 2.31 下限
-- 可见窗口 / 抢焦点：本机验证必须 `ORCA_BACKGROUND_LAUNCH=1`，不要对用户桌面 `show()` / `app.focus()`
+- 可见窗口 / 抢焦点：Agent 验 UI 必须 `ORCA_BACKGROUND_LAUNCH=1`。仅当用户明确要看效果时才开可见 `pnpm dev`
 - Computer-use 会操作本机桌面与外部浏览器；未授权不要对真实已登录会话执行
+- Relay / `login.onorca.dev` / `share.onorca.dev` / `push.onorca.dev`：打包后的应用（官方或本地包）默认指向这些地址；不登录、不开 Relay、不分享则不必用。`pnpm dev` 默认不接云
 - Relay / cloud Terraform、生产 SQL、推送网关
 - 生成物：`out/`、`dist/`、`node_modules/`、`mobile` 构建目录。不要手改
 
