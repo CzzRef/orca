@@ -1,7 +1,7 @@
 # Orca Architecture Map
 
 Tool: grok
-Date: 2026-09-12
+Date: 2026-09-13
 
 ## Sync Rule
 
@@ -28,7 +28,7 @@ Two different “browsers”:
 
 | Module | Technology / Mechanism | Code Address | Current Notes | Last Verified |
 | --- | --- | --- | --- | --- |
-| App version | package | [../../package.json](../../package.json#L3) | `1.4.197` at clone `3b13ce09a51e` | 2026-09-12 |
+| App version | package | [../../package.json](../../package.json#L3) | `1.4.197`；`czz-dev` 已含 `upstream/main` `90b02cba60` | 2026-09-13 |
 | Electron main | electron-vite | [../../electron.vite.config.ts](../../electron.vite.config.ts#L217) | `src/main/index.ts` | 2026-09-12 |
 | Web client page | HTML | [../../src/renderer/web-index.html](../../src/renderer/web-index.html#L1) | title `Orca Web` | 2026-09-12 |
 | Web client boot | React | [../../src/renderer/src/web/main.tsx](../../src/renderer/src/web/main.tsx#L1) | pairing hash → stored runtime | 2026-09-12 |
@@ -42,6 +42,7 @@ Two different “browsers”:
 | Remote server | product docs | [../../docs/site/content/docs/remote-servers.mdx](../../docs/site/content/docs/remote-servers.mdx#L1) | 桌面分享或 `orca serve` | 2026-09-12 |
 | Embedded browser | product docs | [../../docs/site/content/docs/browser/overview.mdx](../../docs/site/content/docs/browser/overview.mdx#L1) | per-worktree Chromium | 2026-09-12 |
 | Local mac pack | script | [../../config/scripts/build-mac-local.mjs](../../config/scripts/build-mac-local.mjs#L1) | `pnpm build:mac` 写 `local.<ts>.<commit>` 版本 | 2026-09-12 |
+| Plugin v0 | knowledge | [plugins.md](plugins.md#L1) | 私有能力默认走实验性 Plugin；能力封闭集 | 2026-09-13 |
 
 ## Data Contract
 
@@ -54,4 +55,5 @@ Two different “browsers”:
 ## Unproven
 
 - `pnpm run build:web`、局域网 Web 配对、`pnpm build:mac`、官方 dmg、Relay 内容是否落盘：未跑。
+- 私有 Plugin 实装、bundled 进本地包：未跑。见 [plugins.md](plugins.md#L1)。
 - `pnpm install` + 可见 `pnpm dev` 已于 2026-09-12 在本机执行；见 [cloud-and-local-pack.md](cloud-and-local-pack.md#L1)。

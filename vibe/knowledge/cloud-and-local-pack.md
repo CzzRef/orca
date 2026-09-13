@@ -8,6 +8,8 @@ Evidence: official-doc + code + 2026-09-12 local `pnpm install` / `pnpm dev`
 
 局域网看效果、不登录、不跨网：源码 `pnpm dev` 即可，不必官方安装包，也不必 `build:mac`。
 
+加私有能力、又不想发 PR：先走实验性 Plugin，不要默认改内核再打包。见 [plugins.md](plugins.md)。
+
 官方 dmg 与本地打包是同一份 MIT 客户端，没有另塞闭源内核。官方**确实运营**可选第一方云；那是登录 / Relay / 分享 / 推送，不是 IDE 本体。
 
 ## Three independent switches

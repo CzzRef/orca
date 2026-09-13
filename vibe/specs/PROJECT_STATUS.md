@@ -1,7 +1,7 @@
 # Orca Project Status
 
 Tool: grok
-Date: 2026-09-12
+Date: 2026-09-13
 
 ## Purpose
 
@@ -15,9 +15,9 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 ## Current Focus
 
-- Status: `czz-dev` 已落地规则链，并完成本机可见 `pnpm dev`。官方包与第一方云边界已写入知识笔记。无应用代码改动。
-- Latest task docs: [1744 task card](260912/1744-local-dev-cloud-boundary/task-card.md), [changes](260912/1744-local-dev-cloud-boundary/changes.md)；权威事实 [cloud-and-local-pack.md](../knowledge/cloud-and-local-pack.md).
-- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`. `czz-dev` 仍无 upstream。
+- Status: `czz-dev` 已合入 `upstream/main` `90b02cba60`（merge `72a09d2999`）。Plugin v0 私有扩展笔记已写入。无应用代码改动。
+- Latest task docs: [1055 task card](260913/1055-plugin-notes-upstream-sync/task-card.md), [changes](260913/1055-plugin-notes-upstream-sync/changes.md)；权威事实 [plugins.md](../knowledge/plugins.md)。
+- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`。`czz-dev` 无 origin 跟踪分支。`origin/main` 落后 upstream 11，GitHub Sync 缺 `workflow` scope。
 - CodeNote catalog: 已登记 `orca`；本轮不改 CodeNote。
 
 ## Active Task Index
@@ -26,22 +26,23 @@ Compact process hub for active AI work. This file routes current tasks to projec
 | --- | --- | --- | --- | --- |
 | AI rules init | `implemented-local / catalog-registered / gitfork-local-committed / unpushed` | [task-card](260912/1236-ai-rules-init/task-card.md) | project audit 仅余官方短入口 inherited | no app code |
 | Local preview + cloud boundary | `implemented-local / gitfork-local-committed / unpushed` | [task-card](260912/1744-local-dev-cloud-boundary/task-card.md) | `pnpm install`/`pnpm dev` 已观察；code-link OK | 未打包 |
+| Plugin notes + 同步上游 | `implemented-local / merge-done / origin-main-blocked` | [task-card](260913/1055-plugin-notes-upstream-sync/task-card.md) | merge 无冲突；plugin 源码复读 | 未推送；未实装 plugin |
 
 ## Verification State
 
-- Last verified: 2026-09-12 (`pnpm install` + visible `pnpm dev`)
-- Commands: project audit 仅 inherited 短入口；code-link OK
-- Unverified gaps: `build:web` / 局域网 Web 配对 / `build:mac` / 官方 dmg / Relay 内容落盘
+- Last verified: 2026-09-13（`git merge upstream/main` + plugin 源码复读）
+- Commands: 全量 `git fetch upstream` 失败（大小写）；改拉 `upstream/main` 后 merge 成功
+- Unverified gaps: `build:web` / 局域网 Web 配对 / `build:mac` / 官方 dmg / Relay 内容落盘 / 私有 plugin 实装 / `origin/main` Sync
 - Latest Sidecar result: main-thread
-- Latest Prior Task Overlap: reference-only GitFork/react-doctor adapter shape; decision `new-task`
+- Latest Prior Task Overlap: continuation of 1744; decision `new-task`
 - Latest Documentation Impact: `project-current`
 - Latest Efficiency / Token Evidence: `usage unavailable`
 
 ## Open Risk Or Deploy Gates
 
-- Gate: `build:web` / 本机 `build:mac` / 官方签名包 / 对真实网络 `orca serve` / 登录 Relay
-- Blocking condition: 局域网预览已授权；打包与跨网仍未授权
-- Rollback note: `czz-dev` 相对 `origin/main` `3b13ce09a51e` 仅 vibe/适配器；未推送
+- Gate: `build:web` / 本机 `build:mac` / 官方签名包 / 对真实网络 `orca serve` / 登录 Relay / GitHub `origin/main` Sync（需 `workflow` scope）
+- Blocking condition: 局域网预览已授权；打包与跨网仍未授权；远端 `main` 未更新
+- Rollback note: `czz-dev` = 既有 2 个 vibe 提交 + merge `upstream/main`；未推送
 
 ## Governance Baseline
 
@@ -57,15 +58,16 @@ Compact process hub for active AI work. This file routes current tasks to projec
 | Item | Source turn / task | Owner | Next gate | Status |
 | --- | --- | --- | --- | --- |
 | 局域网 Web 工作台 | 1744 | 用户若仍要浏览器配对 | `pnpm run build:web` | documented-unrun |
+| GitHub fork `main` | 1055 | 用户授权 `workflow` 或明确推送 | `gh repo sync` / `git push origin` | blocked-workflow-scope |
 
 ## Memory Routing
 
 - Task rule declaration: recorded on the task card
 - Sidecar document route: main-thread
-- Prior Task Overlap: GitFork/react-doctor
+- Prior Task Overlap: 1744-local-dev-cloud-boundary
 - Evolution Candidate: none
 - Project rules: created this round
-- Knowledge: architecture map + [cloud-and-local-pack.md](../knowledge/cloud-and-local-pack.md)
+- Knowledge: architecture map + [cloud-and-local-pack.md](../knowledge/cloud-and-local-pack.md) + [plugins.md](../knowledge/plugins.md)
 - ADR: empty index only
 - Error memory: empty index
 - DB memory: not configured

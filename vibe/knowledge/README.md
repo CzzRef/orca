@@ -11,6 +11,7 @@ Tool: tool-neutral (codex, claude, grok, and any CodeNote-routed agent)
 
 - Architecture map: [architecture.md](architecture.md)
 - Official vs local pack / cloud boundary: [cloud-and-local-pack.md](cloud-and-local-pack.md)
+- Plugin 私有扩展面: [plugins.md](plugins.md)
 - Error memory: [error-memory/README.md](error-memory/README.md)
 - ADR: [adr/README.md](adr/README.md)
 - Active specs: [../specs/README.md](../specs/README.md)
