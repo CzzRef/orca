@@ -16,7 +16,11 @@ on:
 permissions:
   contents: read
 jobs:
+  czz_demo_schedule_gate:
+    uses: ./.github/workflows/czz-demo-schedule-gate.yml
+
   compatibility:
+    needs: [czz_demo_schedule_gate]
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:

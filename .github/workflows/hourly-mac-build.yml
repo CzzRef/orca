@@ -62,7 +62,7 @@ env:
 jobs:
   # Avoid occupying the limited Mac pool when main has not moved.
   preflight:
-    if: github.repository == 'stablyai/orca'
+    if: github.repository == 'stablyai/orca' && (github.event_name != 'schedule' || vars.CZZ_DEMO_ACTIONS == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:

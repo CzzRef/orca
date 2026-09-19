@@ -20,7 +20,7 @@ concurrency:
 jobs:
   update:
     # Why: this workflow commits to main, so forks should not create divergent badge commits.
-    if: github.repository == 'stablyai/orca'
+    if: github.repository == 'stablyai/orca' && (github.event_name != 'schedule' || vars.CZZ_DEMO_ACTIONS == 'true')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main

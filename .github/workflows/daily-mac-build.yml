@@ -71,7 +71,7 @@ env:
 
 jobs:
   build-daily-mac:
-    if: github.repository == 'stablyai/orca'
+    if: github.repository == 'stablyai/orca' && (github.event_name != 'schedule' || vars.CZZ_DEMO_ACTIONS == 'true')
     outputs:
       tag: ${{ steps.release.outputs.tag }}
       version: ${{ steps.daily.outputs.version }}
