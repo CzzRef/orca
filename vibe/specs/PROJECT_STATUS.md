@@ -15,9 +15,9 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 ## Current Focus
 
-- Status: GitHub 默认主分支改为 `czz-demo`（CZZ DEMO），不再用 `main` 托管定时 Actions。inherited cron 已迁到 demo 分支并暂停（`CZZ_DEMO_ACTIONS`）。
-- Latest task docs: [1006 task card](260919/1006-cursor-czz-demo-pause-actions/task-card.md), [260919-cursor-czz-demo-pause-actions.md](260919/1006-cursor-czz-demo-pause-actions/260919-cursor-czz-demo-pause-actions.md)；开关 [czz-demo README](../../.github/czz-demo/README.md)。
-- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`。本地工作分支仍是 `czz-dev`。`main` 只作上游对照，不再当默认分支。
+- Status: 主分支是原来的 `czz-dev`（不是 `czz-demo`）。全部 GitHub Actions 已停：workflow 移到 `.github/workflows-paused/`。
+- Latest task docs: [1148 task card](260919/1148-cursor-czz-dev-stop-actions/task-card.md), [260919-cursor-czz-dev-stop-actions.md](260919/1148-cursor-czz-dev-stop-actions/260919-cursor-czz-dev-stop-actions.md)。
+- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`。工作主分支 `czz-dev`。误建的 `czz-demo` 已删除。
 - CodeNote catalog: 已登记 `orca`；本轮不改 CodeNote。中央 CodeNote 检出本环境不可用。
 
 ## Active Task Index
@@ -27,13 +27,14 @@ Compact process hub for active AI work. This file routes current tasks to projec
 | AI rules init | `implemented-local / catalog-registered / gitfork-local-committed / unpushed` | [task-card](260912/1236-ai-rules-init/task-card.md) | project audit 仅余官方短入口 inherited | no app code |
 | Local preview + cloud boundary | `implemented-local / gitfork-local-committed / unpushed` | [task-card](260912/1744-local-dev-cloud-boundary/task-card.md) | `pnpm install`/`pnpm dev` 已观察；code-link OK | 未打包 |
 | Plugin notes + 同步上游 | `implemented-local / merge-done / origin-main-blocked` | [task-card](260913/1055-plugin-notes-upstream-sync/task-card.md) | merge 无冲突；plugin 源码复读 | 未推送；未实装 plugin |
-| CZZ DEMO 主分支 + 暂停 schedule | `implemented` | [task-card](260919/1006-cursor-czz-demo-pause-actions/task-card.md) | 默认分支 + `CZZ_DEMO_ACTIONS` 门禁 | 以后设变量即可恢复 |
+| CZZ DEMO 主分支 + 暂停 schedule | `superseded` | [task-card](260919/1006-cursor-czz-demo-pause-actions/task-card.md) | 用户更正：不是 czz-demo | 被 1148 取代 |
+| 停全部 GitHub Actions | `implemented` | [task-card](260919/1148-cursor-czz-dev-stop-actions/task-card.md) | workflow 已移出 `.github/workflows/` | 主分支 `czz-dev` |
 
 ## Verification State
 
-- Last verified: 2026-09-19（默认分支切换 + schedule 门禁落地）
-- Commands: `gh repo view --json defaultBranchRef`；workflow `if` 条件复核
-- Unverified gaps: `build:web` / 局域网 Web 配对 / `build:mac` / 官方 dmg / Relay 内容落盘 / 私有 plugin 实装 / 下一次 cron 是否 skipped（需等 UTC 槽）
+- Last verified: 2026-09-19（workflow 整夹移出；`czz-demo` 远程分支删除）
+- Commands: `ls .github/workflows`；`gh workflow list`
+- Unverified gaps: `build:web` / 局域网 Web 配对 / `build:mac` / 官方 dmg / Relay 内容落盘 / 私有 plugin 实装
 - Latest Sidecar result: main-thread
 - Latest Prior Task Overlap: continuation of 1744; decision `new-task`
 - Latest Documentation Impact: `project-current`
@@ -41,9 +42,9 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 ## Open Risk Or Deploy Gates
 
-- Gate: `build:web` / 本机 `build:mac` / 官方签名包 / 对真实网络 `orca serve` / 登录 Relay / 恢复定时 CI（`CZZ_DEMO_ACTIONS=true`）
-- Blocking condition: 局域网预览已授权；打包与跨网仍未授权；定时 Actions 按用户要求暂停
-- Rollback note: 把 GitHub 默认分支改回 `main` 会重新托管上游 cron；不要在未开门禁时改回
+- Gate: `build:web` / 本机 `build:mac` / 官方签名包 / 对真实网络 `orca serve` / 登录 Relay / 恢复 Actions（移回 `.github/workflows/`）
+- Blocking condition: 局域网预览已授权；打包与跨网仍未授权；GitHub Actions 已全部停
+- Rollback note: 恢复时把 `.github/workflows-paused/` 里的 yml 移回 `.github/workflows/`
 
 ## Governance Baseline
 
@@ -59,8 +60,8 @@ Compact process hub for active AI work. This file routes current tasks to projec
 | Item | Source turn / task | Owner | Next gate | Status |
 | --- | --- | --- | --- | --- |
 | 局域网 Web 工作台 | 1744 | 用户若仍要浏览器配对 | `pnpm run build:web` | documented-unrun |
-| GitHub fork `main` | 1055 | 已改用 `czz-demo` 作默认主分支 | 不要把 `main` 改回默认 | superseded |
-| 恢复 fork 定时 Actions | 1006 | 用户之后要跑 cron 时 | `gh variable set CZZ_DEMO_ACTIONS --body true` | paused |
+| GitHub fork `main` | 1055 | 工作主分支是 `czz-dev` | 不要新建 czz-demo | superseded |
+| 恢复 GitHub Actions | 1148 | 用户之后要跑 CI 时 | 把 `workflows-paused/` 移回 `workflows/` | paused |
 
 ## Memory Routing
 

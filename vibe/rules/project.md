@@ -8,7 +8,7 @@ Tool: tool-neutral (codex, claude, grok, and any CodeNote-routed agent)
 - Path: GitFork clone at `GitFork/orca`
 - Origin: `origin=CzzRef/orca`，`upstream=stablyai/orca`
 - Local working branch: `czz-dev`（已合入 `upstream/main` `90b02cba60`；`package.json` 仍为 `1.4.197`）
-- GitHub 默认主分支: `czz-demo`（CZZ DEMO），不是 `main`。定时 Actions 已迁到该分支并暂停，见 `.github/czz-demo/README.md`
+- GitHub Actions：已全部停用。workflow 在 `.github/workflows-paused/`，见该目录 README。
 - License: MIT, see root `LICENSE`
 - Stack: pnpm 12 workspace + TypeScript + Electron (electron-vite) + Vite web client + Expo mobile
 - Purpose: 并行 CLI Agent IDE/ADE：本机桌面、配对 Web 客户端、移动 Companion、SSH worktree、`orca serve`
