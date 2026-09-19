@@ -20,7 +20,7 @@ defaults:
 
 jobs:
   skew:
-    if: ${{ vars.ORCA_CLOUD_OPERATIONS_ENABLED == 'true' }}
+    if: ${{ vars.ORCA_CLOUD_OPERATIONS_ENABLED == 'true' && (github.event_name != 'schedule' || vars.CZZ_DEMO_ACTIONS == 'true') }}
     runs-on: ubuntu-latest
     steps:
       - name: Measure Date-header skew for every relay cell

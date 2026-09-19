@@ -14,9 +14,13 @@ permissions:
   contents: read
 
 jobs:
+  czz_demo_schedule_gate:
+    uses: ./.github/workflows/czz-demo-schedule-gate.yml
+
   # A cold cache would otherwise make all eight Node 26 shards compile the same native addons.
   test_native_cache:
     name: prepare test native cache node 26
+    needs: [czz_demo_schedule_gate]
     runs-on: ubuntu-latest
 
     steps:

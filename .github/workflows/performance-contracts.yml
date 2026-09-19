@@ -30,7 +30,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  czz_demo_schedule_gate:
+    uses: ./.github/workflows/czz-demo-schedule-gate.yml
+
   contracts:
+    needs: [czz_demo_schedule_gate]
     strategy:
       fail-fast: false
       matrix:

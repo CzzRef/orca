@@ -1,7 +1,7 @@
 # Orca Project Status
 
 Tool: grok
-Date: 2026-09-13
+Date: 2026-09-19
 
 ## Purpose
 
@@ -15,10 +15,10 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 ## Current Focus
 
-- Status: `czz-dev` 已合入 `upstream/main` `90b02cba60`（merge `72a09d2999`）。Plugin v0 私有扩展笔记已写入。无应用代码改动。
-- Latest task docs: [1055 task card](260913/1055-plugin-notes-upstream-sync/task-card.md), [changes](260913/1055-plugin-notes-upstream-sync/changes.md)；权威事实 [plugins.md](../knowledge/plugins.md)。
-- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`。`czz-dev` 无 origin 跟踪分支。`origin/main` 落后 upstream 11，GitHub Sync 缺 `workflow` scope。
-- CodeNote catalog: 已登记 `orca`；本轮不改 CodeNote。
+- Status: GitHub 默认主分支改为 `czz-demo`（CZZ DEMO），不再用 `main` 托管定时 Actions。inherited cron 已迁到 demo 分支并暂停（`CZZ_DEMO_ACTIONS`）。
+- Latest task docs: [1006 task card](260919/1006-cursor-czz-demo-pause-actions/task-card.md), [260919-cursor-czz-demo-pause-actions.md](260919/1006-cursor-czz-demo-pause-actions/260919-cursor-czz-demo-pause-actions.md)；开关 [czz-demo README](../../.github/czz-demo/README.md)。
+- Remotes: `origin=CzzRef/orca`，`upstream=stablyai/orca`。本地工作分支仍是 `czz-dev`。`main` 只作上游对照，不再当默认分支。
+- CodeNote catalog: 已登记 `orca`；本轮不改 CodeNote。中央 CodeNote 检出本环境不可用。
 
 ## Active Task Index
 
@@ -27,12 +27,13 @@ Compact process hub for active AI work. This file routes current tasks to projec
 | AI rules init | `implemented-local / catalog-registered / gitfork-local-committed / unpushed` | [task-card](260912/1236-ai-rules-init/task-card.md) | project audit 仅余官方短入口 inherited | no app code |
 | Local preview + cloud boundary | `implemented-local / gitfork-local-committed / unpushed` | [task-card](260912/1744-local-dev-cloud-boundary/task-card.md) | `pnpm install`/`pnpm dev` 已观察；code-link OK | 未打包 |
 | Plugin notes + 同步上游 | `implemented-local / merge-done / origin-main-blocked` | [task-card](260913/1055-plugin-notes-upstream-sync/task-card.md) | merge 无冲突；plugin 源码复读 | 未推送；未实装 plugin |
+| CZZ DEMO 主分支 + 暂停 schedule | `implemented` | [task-card](260919/1006-cursor-czz-demo-pause-actions/task-card.md) | 默认分支 + `CZZ_DEMO_ACTIONS` 门禁 | 以后设变量即可恢复 |
 
 ## Verification State
 
-- Last verified: 2026-09-13（`git merge upstream/main` + plugin 源码复读）
-- Commands: 全量 `git fetch upstream` 失败（大小写）；改拉 `upstream/main` 后 merge 成功
-- Unverified gaps: `build:web` / 局域网 Web 配对 / `build:mac` / 官方 dmg / Relay 内容落盘 / 私有 plugin 实装 / `origin/main` Sync
+- Last verified: 2026-09-19（默认分支切换 + schedule 门禁落地）
+- Commands: `gh repo view --json defaultBranchRef`；workflow `if` 条件复核
+- Unverified gaps: `build:web` / 局域网 Web 配对 / `build:mac` / 官方 dmg / Relay 内容落盘 / 私有 plugin 实装 / 下一次 cron 是否 skipped（需等 UTC 槽）
 - Latest Sidecar result: main-thread
 - Latest Prior Task Overlap: continuation of 1744; decision `new-task`
 - Latest Documentation Impact: `project-current`
@@ -40,9 +41,9 @@ Compact process hub for active AI work. This file routes current tasks to projec
 
 ## Open Risk Or Deploy Gates
 
-- Gate: `build:web` / 本机 `build:mac` / 官方签名包 / 对真实网络 `orca serve` / 登录 Relay / GitHub `origin/main` Sync（需 `workflow` scope）
-- Blocking condition: 局域网预览已授权；打包与跨网仍未授权；远端 `main` 未更新
-- Rollback note: `czz-dev` = 既有 2 个 vibe 提交 + merge `upstream/main`；未推送
+- Gate: `build:web` / 本机 `build:mac` / 官方签名包 / 对真实网络 `orca serve` / 登录 Relay / 恢复定时 CI（`CZZ_DEMO_ACTIONS=true`）
+- Blocking condition: 局域网预览已授权；打包与跨网仍未授权；定时 Actions 按用户要求暂停
+- Rollback note: 把 GitHub 默认分支改回 `main` 会重新托管上游 cron；不要在未开门禁时改回
 
 ## Governance Baseline
 
@@ -58,7 +59,8 @@ Compact process hub for active AI work. This file routes current tasks to projec
 | Item | Source turn / task | Owner | Next gate | Status |
 | --- | --- | --- | --- | --- |
 | 局域网 Web 工作台 | 1744 | 用户若仍要浏览器配对 | `pnpm run build:web` | documented-unrun |
-| GitHub fork `main` | 1055 | 用户授权 `workflow` 或明确推送 | `gh repo sync` / `git push origin` | blocked-workflow-scope |
+| GitHub fork `main` | 1055 | 已改用 `czz-demo` 作默认主分支 | 不要把 `main` 改回默认 | superseded |
+| 恢复 fork 定时 Actions | 1006 | 用户之后要跑 cron 时 | `gh variable set CZZ_DEMO_ACTIONS --body true` | paused |
 
 ## Memory Routing
 
@@ -69,7 +71,7 @@ Compact process hub for active AI work. This file routes current tasks to projec
 - Project rules: created this round
 - Knowledge: architecture map + [cloud-and-local-pack.md](../knowledge/cloud-and-local-pack.md) + [plugins.md](../knowledge/plugins.md)
 - ADR: empty index only
-- Error memory: empty index
+- Error memory: [260919-cursor-fork-inherited-schedule.md](../knowledge/error-memory/260919-cursor-fork-inherited-schedule.md)
 - DB memory: not configured
 
 ## Cross-Repository Links

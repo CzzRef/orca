@@ -60,7 +60,11 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  czz_demo_schedule_gate:
+    uses: ./.github/workflows/czz-demo-schedule-gate.yml
+
   native-smoke:
+    needs: [czz_demo_schedule_gate]
     if: github.event_name == 'pull_request'
     permissions:
       contents: read
@@ -142,6 +146,7 @@ jobs:
   # Hosted macOS runners cannot receive persistent Accessibility/Screen Recording
   # grants. Keep the real native build/owner-loss checks on every trigger instead.
   mac-native-owner-smoke:
+    needs: [czz_demo_schedule_gate]
     runs-on: macos-15
     permissions:
       contents: read
@@ -163,6 +168,7 @@ jobs:
         run: pnpm verify:computer-native
 
   linux:
+    needs: [czz_demo_schedule_gate]
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-22.04
     env:
@@ -182,6 +188,7 @@ jobs:
       - run: xvfb-run --auto-servernum dbus-run-session -- pnpm test:e2e:computer --reporter=verbose tests/e2e/computer-linux.e2e.ts
 
   windows:
+    needs: [czz_demo_schedule_gate]
     if: github.event_name != 'pull_request'
     runs-on: windows-latest
     env:

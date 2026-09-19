@@ -6,7 +6,7 @@ Use this directory for reusable, verified failure patterns.
 
 ## Sources To Review During Migration
 
-None yet. This clone had no prior project error archive.
+- [260919-cursor-fork-inherited-schedule.md](260919-cursor-fork-inherited-schedule.md)：fork 默认 `main` 会跑上游 cron 并报红。
 
 ## Rules
 

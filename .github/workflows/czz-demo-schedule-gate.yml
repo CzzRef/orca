@@ -1,0 +1,16 @@
+name: CZZ DEMO schedule gate
+
+# Why: CzzRef/orca CZZ DEMO keeps inherited stablyai cron YAML on the
+# demo default branch, but those jobs must not run until someone sets
+# vars.CZZ_DEMO_ACTIONS=true. Callers attach this job and need it.
+on:
+  workflow_call:
+
+jobs:
+  gate:
+    if: github.event_name != 'schedule' || vars.CZZ_DEMO_ACTIONS == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Allow this event
+        run: echo ok

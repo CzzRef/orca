@@ -51,9 +51,9 @@ on:
 jobs:
   terminal-perf:
     name: terminal scale perf
-    # Why: forks inherit this daily cron and fail the scale budget; the
-    # fork does not own that gate. Manual dispatch stays available.
-    if: github.event_name != 'schedule' || github.repository == 'stablyai/orca'
+    # Why: CZZ DEMO keeps this cron YAML but does not run it until
+    # vars.CZZ_DEMO_ACTIONS is true. Manual dispatch stays available.
+    if: github.event_name != 'schedule' || vars.CZZ_DEMO_ACTIONS == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:

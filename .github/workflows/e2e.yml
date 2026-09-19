@@ -37,11 +37,10 @@ on:
     - cron: '0 17,22 * * *'
 
 jobs:
-  # Why: forks inherit this cron and spend ~30m twice a day on flakes the
-  # fork does not own. Hourly/daily already skip unless repository is
-  # stablyai/orca. Manual and workflow_call runs stay available.
+  # Why: CZZ DEMO keeps this cron YAML but does not run it until
+  # vars.CZZ_DEMO_ACTIONS is true. Manual and workflow_call stay available.
   allow_scheduled:
-    if: github.event_name != 'schedule' || github.repository == 'stablyai/orca'
+    if: github.event_name != 'schedule' || vars.CZZ_DEMO_ACTIONS == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 1
     steps:

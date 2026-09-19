@@ -3,7 +3,7 @@
 
 Project-owned conditional detail. Edit this local owner for project-specific facts; global policy stays in the compact core. Commands and inline paths are relative to the repository root unless their original text says otherwise. Read the sections relevant to the affected surface before material work.
 
-本仓库是 `CzzRef/orca` 的本机 GitFork 检出，上游为 `stablyai/orca`。本地开发主分支是 `czz-dev`。不要复述 CodeNote 规则正文。
+本仓库是 `CzzRef/orca` 的本机 GitFork 检出，上游为 `stablyai/orca`。本地开发主分支是 `czz-dev`。GitHub 默认主分支是 `czz-demo`（CZZ DEMO），不是 `main`。不要复述 CodeNote 规则正文。
 
 - 过程枢纽：[vibe/specs/PROJECT_STATUS.md](<../specs/PROJECT_STATUS.md>)
 - 项目规则：[README.md](<README.md>)
