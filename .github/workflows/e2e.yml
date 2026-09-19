@@ -37,8 +37,20 @@ on:
     - cron: '0 17,22 * * *'
 
 jobs:
+  # Why: forks inherit this cron and spend ~30m twice a day on flakes the
+  # fork does not own. Hourly/daily already skip unless repository is
+  # stablyai/orca. Manual and workflow_call runs stay available.
+  allow_scheduled:
+    if: github.event_name != 'schedule' || github.repository == 'stablyai/orca'
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Allow this event
+        run: echo ok
+
   build:
     name: build e2e app
+    needs: [allow_scheduled]
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -83,6 +95,7 @@ jobs:
   # this immutable cache instead of compiling the same ABI concurrently.
   prepare-native-cache:
     name: prepare Electron native cache
+    needs: [allow_scheduled]
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -392,6 +405,7 @@ jobs:
 
   ssh-browser-network-route:
     name: ssh browser network route
+    needs: [allow_scheduled]
     if: inputs.test_files == '' || contains(inputs.test_files, 'tests/e2e/ssh-browser-network-execution-route.docker.unit.test.ts')
     runs-on: ubuntu-latest
     timeout-minutes: 15
